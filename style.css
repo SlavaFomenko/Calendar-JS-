@@ -4,6 +4,9 @@
   margin: 0;
   box-sizing: border-box;
 }
+li{
+  list-style: none;
+}
 html,body{
   width: 100vw;
   height: 100vh;
@@ -23,7 +26,7 @@ html,body{
   border: 1px solid #000;
   display: flex;
   flex-direction: column;
-  background-color: rgba(38, 38, 38, 0.92);
+  background-color: rgba(38, 38, 38);
   color: white;
 }
 .calendar-clock{
@@ -50,7 +53,7 @@ html,body{
   font-size: 110%;
   color: rgb(156 187 208);
   text-decoration: none;
-
+  padding-left: 1%;
 }
 .calendar-shedule{
   height: 100%;
@@ -59,16 +62,19 @@ html,body{
   flex-direction: column;
 }
 .calendar-date{
-  height: 14.5%;
+  height: 10%;
   min-height: 50px;
   width: 100%;
 
-  padding-left: 6%;
+  
+  padding-left:6%;
+  padding-right: 15%;
   /* background-color: red; */
 
   display: flex;
-  align-items: center;
+  justify-content: space-between;
   font-size: 120%;
+
 }
 .calendar-date-info{
   
@@ -78,8 +84,90 @@ html,body{
   gap: 5%;
   align-items: center;
 }
+.calendar-buttons{
+  height: 100%;
+  /* background-color: red; */
+  display: flex;
+  align-items: center;
+  gap: 50%;
+}
+
+.calendar-buttons :first-child{
+  height: 45%;
+  rotate: -90deg;
+}
+.calendar-buttons :last-child{
+  height: 45%;
+  rotate: 90deg;
+}
+
 .calendar-grid {
   width: 100%;
   height: 85.5%;
-  /* background-color: green; */
+  padding:2% 2%;
+  font-size: 120%;
+}
+.grid-week{
+  width: 100%;
+  height: 14.2857%;
+  display: grid;
+  /* background-color: red; */
+  grid-template-columns: repeat(7,1fr);
+}
+.grid-week *{
+  height: 100%;
+  /* border: 1px solid #000; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.shedule-day-grid{
+  z-index: 1;
+  width: 100%;
+  height: 90%;
+  /* border: 1px solid #000; */
+  display: grid;
+  grid-template-columns: repeat(7,1fr);
+  grid-template-rows: repeat(6,1fr);
+  gap: 1%;
+  background-color: rgba(38, 38, 38);
+  
+}
+.shedule-day-grid *{
+  z-index: 3;
+  position: relative;
+  font-size: 110%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 2px solid #000; */
+  background-color: rgba(38, 38, 38);
+}
+.shedule-day-grid *::after {
+  z-index: 4;
+  overflow: hidden;
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -4.5px;
+  /* border: 1px solid rgba(38, 38, 38);  */
+}
+
+.circle {
+  z-index: 2;
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 170px;
+  height: 170px;
+  /* border: 2px solid red; */
+  /* background-color: gray; */
+  /* background: radial-gradient(gray, transparent); */
+  background: radial-gradient(circle, gray 20%, rgba(0, 0, 0, 0) 70%);
+  border-radius: 50%;
+  pointer-events: none; 
+  display: none; 
 }

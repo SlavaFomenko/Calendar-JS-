@@ -3,8 +3,8 @@ const calendar = document.querySelector('.calendar')
 const circle = document.createElement("li");
 circle.classList.add("circle");
 block.appendChild(circle);
-block.append(circle)
-console.log(calendar.offsetWidth);
+// block.append(circle)
+// console.log(calendar.offsetWidth);
 block.addEventListener("mousemove", (e) => {
   const windowWidth = window.innerWidth;
   const calendarWidth = calendar.offsetWidth

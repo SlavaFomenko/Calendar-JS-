@@ -10,12 +10,13 @@ block.addEventListener("mousemove", (e) => {
   const calendarWidth = calendar.offsetWidth
   const x = e.clientX - block.offsetLeft;
   const y = e.clientY - block.offsetTop;
-  console.log(x + (calendarWidth - (windowWidth / 2)));
+  // console.log(x + (calendarWidth - (windowWidth / 2)));
   circle.style.left = `${(x - (calendarWidth - (windowWidth / 2))+150)}px`; 
   circle.style.top = `${y + 330}px`;
 });
 
 block.addEventListener("mouseenter", () => {
+  circle.innerHTML = '';
   circle.style.display = "block";
 });
 

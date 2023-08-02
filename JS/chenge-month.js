@@ -1,12 +1,20 @@
 const defaultDate = new Date();
+const calendarGrid = document.querySelector('.shedule-day-grid')
+
+const [btnUp,btnDown] = document.querySelectorAll('.calendar-buttons *')
+
+
+for (let i = 1; i <= 42; i++) {
+  const li = document.createElement('li')
+  calendarGrid.append(li)
+}
+// debugger
 const calendarElements = document.querySelectorAll('.shedule-day-grid *')
 
 let currentMonth = +defaultDate.getMonth();
 let currentYear = +defaultDate.getFullYear();
 
-function showCurrentMontYear(month, year) {
 
-}
 
 function getDateOfWeek(date) {
   const dayOfWeek = date.toLocaleString("default", { weekday: 'short' })
@@ -41,7 +49,7 @@ function showMonth(month, year) {
   const curentMonthLastDay = new Date(year, month + 1, 0).getDate()
   let lastMonthLastDay = new Date(year, month, 0).getDate()
   const firstDateOfWeek = getDateOfWeek(currentDate)
-  console.log(lastMonthLastDay);
+  // console.log(lastMonthLastDay);
 
   for (let i = 1; i < firstDateOfWeek; i++) {
     if (calendarElements[i - 1].textContent === '') {
@@ -62,15 +70,72 @@ function showMonth(month, year) {
   }
 
   for (let i = 0; i < calendarElements.length; i++) {
-    if(calendarElements[i].textContent === ''){
+    if (calendarElements[i].textContent === '') {
       for (let j = 1; j < 15; j++) {
         calendarElements[i].innerHTML = j
         i++
+        if (i === calendarElements.length) {
+          break
+        }
       }
+      break
     }
-    
   }
+}
 
+function showCurrentMontYear(month, year) {
+  const calendarMonth = document.getElementById('calendar-month')
+  const calendarYear = document.getElementById('calendar-year')
+  const months = [
+    'Январь',
+    'Февраль',
+    'Март',
+    'Апрель',
+    'Май',
+    'Июнь',
+    'Июль',
+    'Август',
+    'Сентябрь',
+    'Октябрь',
+    'Ноябрь',
+    'Декабрь'
+  ];
+  calendarMonth.innerText = months[month]
+  calendarYear.innerText = year
 }
 
 showMonth(currentMonth, currentYear)
+showCurrentMontYear(currentMonth, currentYear)
+
+btnUp.addEventListener("click",()=>{
+  if(currentMonth == 11){
+    currentMonth = 0;
+    currentYear++
+  } else {
+    currentMonth++
+  }
+
+  calendarElements.forEach((li)=>{
+    li.innerHTML = '';
+  })
+  console.log(currentYear);
+  console.log(currentMonth);
+  showMonth(currentMonth, currentYear)
+  showCurrentMontYear(currentMonth, currentYear)
+})
+btnDown.addEventListener("click",()=>{
+  if(currentMonth == 0){
+    currentMonth = 11;
+    currentYear--
+  } else {
+    currentMonth--
+  }
+
+  calendarElements.forEach((li)=>{
+    li.innerHTML = '';
+  })
+  console.log(currentYear);
+  console.log(currentMonth);
+  showMonth(currentMonth, currentYear)
+  showCurrentMontYear(currentMonth, currentYear)
+})

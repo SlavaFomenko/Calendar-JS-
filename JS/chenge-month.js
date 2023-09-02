@@ -1,20 +1,30 @@
+// import presentDayCheck from "./present-day";
+
 const defaultDate = new Date();
 const calendarGrid = document.querySelector('.shedule-day-grid')
 
-const [btnUp,btnDown] = document.querySelectorAll('.calendar-buttons *')
+const [btnUp, btnDown] = document.querySelectorAll('.calendar-buttons *')
 
 
 for (let i = 1; i <= 42; i++) {
   const li = document.createElement('li')
+
   calendarGrid.append(li)
 }
 // debugger
 const calendarElements = document.querySelectorAll('.shedule-day-grid *')
-
 let currentMonth = +defaultDate.getMonth();
 let currentYear = +defaultDate.getFullYear();
 
-
+calendarElements.forEach(li => {
+  li.addEventListener('click', () => {
+    console.log(this);
+    calendarElements.forEach(li=>{
+      li.style.border = 'none';
+    })
+    li.style.border = "3px solid rgb(0 120 215)"
+  })
+})
 
 function getDateOfWeek(date) {
   const dayOfWeek = date.toLocaleString("default", { weekday: 'short' })
@@ -107,35 +117,34 @@ function showCurrentMontYear(month, year) {
 showMonth(currentMonth, currentYear)
 showCurrentMontYear(currentMonth, currentYear)
 
-btnUp.addEventListener("click",()=>{
-  if(currentMonth == 11){
+
+
+
+btnUp.addEventListener("click", () => {
+  if (currentMonth == 11) {
     currentMonth = 0;
     currentYear++
   } else {
     currentMonth++
   }
-
-  calendarElements.forEach((li)=>{
+  calendarElements.forEach((li) => {
     li.innerHTML = '';
   })
-  console.log(currentYear);
-  console.log(currentMonth);
   showMonth(currentMonth, currentYear)
   showCurrentMontYear(currentMonth, currentYear)
+  presentDayCheck(currentMonth, currentYear)
 })
-btnDown.addEventListener("click",()=>{
-  if(currentMonth == 0){
+btnDown.addEventListener("click", () => {
+  if (currentMonth == 0) {
     currentMonth = 11;
     currentYear--
   } else {
     currentMonth--
   }
-
-  calendarElements.forEach((li)=>{
+  calendarElements.forEach((li) => {
     li.innerHTML = '';
   })
-  console.log(currentYear);
-  console.log(currentMonth);
   showMonth(currentMonth, currentYear)
   showCurrentMontYear(currentMonth, currentYear)
+  presentDayCheck(currentMonth, currentYear)
 })

@@ -9,7 +9,7 @@ const timeInterval = setInterval(() => {
   clock.innerText = time;
 
   if(date.innerText != getFormattedDate()){
-    date.innerText = getFormattedDate();фвв
+    date.innerText = getFormattedDate();
   }
 }, 1)
 
